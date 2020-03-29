@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #encoding: utf8
-import rospy, unittest, rostest
-import rosnode
+import unittest, rostest
+import rosnode, rospy
 import time
 from pimouse_ros.msg import MotorFreqs
 from geometry_msgs.msg import Twist
@@ -24,8 +24,8 @@ class MotorTest(unittest.TestCase):
             pub.publish(m)
             time.sleep(0.1)
 
-        self.file_check("rtmotor_raw_l0", m.left_hz,  "wrong left value from motor_raw")
-        self.file_check("rtmotor_raw_r0", m.right_hz, "wrong left value from motor_raw")
+        self.file_check("rtmotor_raw_l0", m.left_hz,  "wrong left  value from motor_raw")
+        self.file_check("rtmotor_raw_r0", m.right_hz, "wrong right value from motor_raw")
 
     def test_pub_cmd_vel(self):
         pub = rospy.Publisher('/cmd_vel', Twist)
