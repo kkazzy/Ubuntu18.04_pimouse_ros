@@ -31,7 +31,7 @@ class LightSensorTest(unittest.TestCase):
     def test_get_values(self):
         rospy.set_param('lightsensors_freq', 10)
         time.sleep(2)
-        with open("/dev/rtlightsensors0", "w") as f:
+        with open("/dev/rtlightsensor0", "w") as f:
             data = f.write("-1 0 123 4321\n")
 
         time.sleep(3)
