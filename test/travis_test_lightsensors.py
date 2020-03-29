@@ -42,7 +42,7 @@ class LightSensorTest(unittest.TestCase):
     def test_change_parameter(self):
         rospy.set_param('lightsensors_freq', 1)
         time.sleep(2)
-        c_prev = selt.count
+        c_prev = self.count
         time.sleep(3)
         ### コールバック関数が3秒間で最高でも4回しか呼ばれていない事を確認 ###
         self.assertTrue(self.count < c_prev + 4, "freq does not change")
