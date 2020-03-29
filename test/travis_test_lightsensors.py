@@ -13,7 +13,7 @@ class LightSensorTest(unittest.TestCase):
 
     def callback(self, data):
         self.count +=1
-        self.value = data
+        self.values = data
 
     def check_values(self, lf, ls, rs, rf):
         vs = self.values
@@ -28,7 +28,7 @@ class LightSensorTest(unittest.TestCase):
         nodes = rosnode.get_node_names()
         self.assertIn('/lightsensors', nodes, "node does not exist")
 
-    def test_get_value(self):
+    def test_get_values(self):
         rospy.set_param('lightsensors_freq', 10)
         time.sleep(2)
         with open("/dev/rtlightsensors0", "w") as f:
@@ -37,7 +37,7 @@ class LightSensorTest(unittest.TestCase):
         time.sleep(3)
         ### コールバック関数が最低1回は呼ばれ、値が取得できているかの確認###
         self.assertFalse(self.count== 0, "cannot subscribe the topic")
-        self.check_value("4321,123,0,-1")
+        self.check_values("4321,123,0,-1")
     
     def test_change_parameter(self):
         rospy.set_param('lightsensors_freq', 1)
